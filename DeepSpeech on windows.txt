@@ -79,5 +79,9 @@ Time to test it out! Initially my test was with one of the 4 provided audio file
 deepspeech ../models/output_graph.pb ../audio/2830?3980?0043.wav ../models/alphabet.txt ../models/lm.binary ../models/trie
 And yes it worked! It recognized it accurately.
 
-
+Then I wanted to try it with my own voice. 
+I knew that the pre-trained model used a dataset of people with US accent which is something that I do not have. 
+In addition, I had no idea what exact words were included in the model. I decided to say something that I would say to Alexa or Siri. 
+I fired up Audacity which is an audio DAW and I recorded myself saying ¡°What time is it?¡±. 
+One thing to keep in mind is that you recording should be Mono and at 16 Khz rate in order to be compatible with DeepSpeech.
 
