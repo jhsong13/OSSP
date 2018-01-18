@@ -8,6 +8,7 @@ import re
 from six.moves import range
 from functools import reduce
 
+# Alphabet class
 class Alphabet(object):
     def __init__(self, config_file):
         self._label_to_str = []
@@ -117,8 +118,9 @@ def wers(originals, results):
 # version 1.0. This software is distributed without any warranty. For more
 # information, see <http://creativecommons.org/publicdomain/zero/1.0>
 
+"Calculates the Levenshtein distance between a and b."
 def levenshtein(a,b):
-    "Calculates the Levenshtein distance between a and b."
+    
     n, m = len(a), len(b)
     if n > m:
         # Make sure n <= m, to use O(min(n,m)) space
