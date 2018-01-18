@@ -29,8 +29,11 @@ import numpy as np
 
 GITHUB_API_BASE        = 'https://api.github.com'
 MOZILLA_GITHUB_ACCOUNT = os.environ.get('ds_github_account', 'mozilla')
+# Git hub referebce
 DEEPSPEECH_GITHUB_PROJ = os.environ.get('ds_github_project', 'DeepSpeech')
+# Git hub project
 DEEPSPEECH_GITHUB_REF  = os.environ.get('ds_github_ref',     'refs/heads/wer-tracking')
+# Git hub tracking reference
 
 DEEPSPEECH_CLONE_PATH  = os.path.abspath(os.environ.get('ds_clone_path', './ds_exec_clone/'))
 
