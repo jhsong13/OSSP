@@ -25,6 +25,7 @@ except ImportError:
         features = mfcc(audio, samplerate=fs, numcep=numcep)
 
         # We only keep every second feature (BiRNN stride = 2)
+        # stride is a series of sampling distance
         features = features[::2]
 
         # One stride per time step in the input
