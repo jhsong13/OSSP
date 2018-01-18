@@ -8,6 +8,7 @@ from util.audio import audiofile_to_input_vector
 from util.gpu import get_available_gpus
 from util.text import ctc_label_dense_to_sparse, text_to_char_array
 
+# class 1
 class ModelFeeder(object):
     '''
     Feeds data into a model.
@@ -77,6 +78,7 @@ class ModelFeeder(object):
         '''
         return self._tower_feeders[tower_feeder_index].next_batch()
 
+# class 2
 class DataSet(object):
     '''
     Represents a collection of audio samples and their respective transcriptions.
@@ -99,6 +101,7 @@ class DataSet(object):
             self.files = self.files[:limit]
         self.total_batches = int(ceil(len(self.files) / batch_size))
 
+# class 3
 class _DataSetLoader(object):
     '''
     Internal class that represents an input queue with data from one of the DataSet objects.
@@ -157,6 +160,7 @@ class _DataSetLoader(object):
             except tf.errors.CancelledError:
                 return
 
+# class 4
 class _TowerFeeder(object):
     '''
     Internal class that represents a switchable input queue for one tower.
