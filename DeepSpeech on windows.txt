@@ -1,0 +1,83 @@
+WSL
+What is WSL?
+
+Windows Subsystem for Linux (WSL) is a compatibility layer for running Linux binary executables (in ELF format) natively on Windows 10.
+In other words Windows 10 can run the Bash shell as if you were under Ubuntu. 
+In fact in order to set it up you go to the Windows Store and install Ubuntu as an app. 
+Let me say that again, UBUNTU¡¦ AS AN APP¡¦ UNDER WINDOWS!!!
+
+I had heard that it is not 100% compatible with every software out there but nevertheless I decided to give it a go. 
+And well what do you know, it actually worked!
+
+<Installation process>
+First enable Windows Subsystem for Linux under Windows Features
+
+Then install the Ubuntu app from the Windows Store and launch it
+
+After launching wait for the installation process to finish and then enter your Ubuntu credentials:
+
+Now we are ready to Ubuntu! Let¡¯s start by making a project folder. 
+I named mine DeepSpeech. 
+Do mkdir DeepSpeech; cd DeepSpeech
+
+Then do a sudo apt-get update
+
+<Install git-lfs>
+Get the git-lfs repo:
+
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+and install git-lfs:
+
+sudo apt-get install git-lfs
+
+<Install Python 2.7>
+
+Do sudo apt-get install python2.7
+
+After that Python 2.7 is installed. However when trying to run the Python REPL you get:
+
+A small workaround is needed to fix this:
+
+sudo ln -s /usr/bin/python3 /etc/alternatives/python
+sudo ln -s /etc/alternatives/python /usr/bin/python
+And now you are getting the Python REPL by simply typing python
+
+<Install pip>
+Pip is Python¡¯s package manager. In order to install:
+
+sudo apt-get install python-pip
+
+<Get DeepSpeech>
+Now it¡¯s time get the source code of the project. We won¡¯t be compiling from code but there are some scripts in there that we need:
+
+git clone https://github.com/mozilla/DeepSpeech .
+Create a new folder for the pre-built DeepSpeech binaries
+
+mkdir -p native_client/bin
+Install a dependency that we will need:
+
+pip install six
+And now get the binaries running the taskcluster.py script
+
+python util/taskcluster.py --target native_client/bin
+Then go to the native_client folder using cd native_client
+
+<Get the pre-trained model and sample audio files>
+We need to run 4 commands in order to download and decompress the sample files:
+
+wget https://github.com/mozilla/DeepSpeech/releases/download/v0.1.0/audio-0.1.0.tar.gz
+tar -xvzf audio-0.1.0.tar.gz
+wget https://github.com/mozilla/DeepSpeech/releases/download/v0.1.0/deepspeech-0.1.0-models.tar.gz
+tar -xvzf deepspeech-0.1.0-models.tar.gz
+Then go to the bin folder usingcd bin. As a final touch install the DeepSpeech python bindings:
+
+pip install deepspeech
+HINT: I had to hit enter in the middle of the process to proceed forward
+Ready to test
+Time to test it out! Initially my test was with one of the 4 provided audio files.
+
+deepspeech ../models/output_graph.pb ../audio/2830?3980?0043.wav ../models/alphabet.txt ../models/lm.binary ../models/trie
+And yes it worked! It recognized it accurately.
+
+
+
